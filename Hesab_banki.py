@@ -24,6 +24,15 @@ class Hesab_banki:
             f.write(json.dumps(data))
 
 
+    def dump (self,cus_sup):
+        amount_of_money_requested=int(input('Enter the amount of money requested: '))
+        if cus_sup >= amount_of_money_requested:
+            data[id_search]['supply']=cus_sup-amount_of_money_requested
+            with open('customer_list.json','w') as f:
+                f.write(json.dumps(data))
+        else:
+            print('The amount of money requested is greater than the account balance')
+
         
 
 cus_specification={}
@@ -33,6 +42,8 @@ print('')
 print('1. add: ')
 print('2. deposit: ')
 print('3. withdraw: ')
+print('4. dump: ')
+
 choise_num=int(input('Enter your choise: '))
 if choise_num==1:
     cus_name=str(input('Enter customer name: '))
@@ -71,7 +82,16 @@ if choise_num==3:
             customer_obj=Hesab_banki(data[id_search]['Name'],data[id_search]['lastname'],data[id_search]['id'],data[id_search]['bank_account'],data[id_search]['supply'])
             customer_obj.withdraw(id_search)
             
- 
-    
 
+if choise_num==4:
+    id_search=str(input('Enter customer id for dump: '))  
+    with open('customer_list.json') as f:
+        data=json.load(f)
+        if id_search in data:
+            customer_obj=Hesab_banki(data[id_search]['Name'],data[id_search]['lastname'],data[id_search]['id'],data[id_search]['bank_account'],data[id_search]['supply'])
+            cus_sup=data[id_search]['supply']
+            customer_obj.dump(cus_sup)
 
+else:
+    print('')
+    print('"Be careful in selecting the requested action"')
