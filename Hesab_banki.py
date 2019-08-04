@@ -37,14 +37,16 @@ class Hesab_banki:
 
 cus_specification={}
 all_cus_specification={}
-print('optins :')
 print('')
-print('1. add: ')
-print('2. deposit: ')
-print('3. withdraw: ')
-print('4. dump: ')
+print('optins :')
+print('          1. add: ')
+print('          2. deposit: ')
+print('          3. withdraw: ')
+print('          4. dump: ')
+print('')
+print('')
 
-choise_num=int(input('Enter your choise: '))
+choise_num=int(input('                          Enter your choise: '))
 if choise_num==1:
     cus_name=str(input('Enter customer name: '))
     cus_lastname=str(input('Enter customer lastname: '))
