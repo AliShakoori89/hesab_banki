@@ -45,7 +45,6 @@ print('          3. withdraw: ')
 print('          4. dump: ')
 print('')
 print('')
-
 choise_num=int(input('                          Enter your choise: '))
 if choise_num==1:
     cus_name=str(input('Enter customer name: '))
