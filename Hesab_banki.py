@@ -12,11 +12,17 @@ class Hesab_banki:
 
 
     def deposit (self,cus_sup):
-        #print(data[id_search]['suply'])
         the_amount_of_curtains=int(input('How many sheets do you want to add: '))
         data[id_search]['supply']=cus_sup+the_amount_of_curtains
         with open('customer_list.json','w') as f:
             f.write(json.dumps(data))
+
+
+    def withdraw (self,cus_sup):
+        data.pop(cus_sup)
+        with open('customer_list.json','w') as f:
+            f.write(json.dumps(data))
+
 
         
 
@@ -26,6 +32,7 @@ print('optins :')
 print('')
 print('1. add: ')
 print('2. deposit: ')
+print('3. withdraw: ')
 choise_num=int(input('Enter your choise: '))
 if choise_num==1:
     cus_name=str(input('Enter customer name: '))
@@ -51,18 +58,18 @@ if choise_num==2:
         data=json.load(f)
         if id_search in data:
             customer_obj=Hesab_banki(data[id_search]['Name'],data[id_search]['lastname'],data[id_search]['id'],data[id_search]['bank_account'],data[id_search]['supply'])
-            #print(data[id_search]['Name'],data[id_search]['lastname'],data[id_search]['id'],data[id_search]['bank_account'],data[id_search]['supply'])
-            #customer_select=Hesab_banki(data[id_search]['Name'],data[id_search]['lastname'],data[id_search]['id'],data[id_search]['bank_account'],data[id_search]['supply'])
-            #done=customer_obj.deposit(customer_select)
-            #print(data[id_search]['supply'])
             cus_sup=data[id_search]['supply']
             customer_obj.deposit(cus_sup)
         else:
             print('')
             print('json file not exist id')
-    
-    
-
+if choise_num==3:
+    id_search=str(input('Enter customer id for withdraw: '))
+    with open('customer_list.json') as f:
+        data=json.load(f)
+        if id_search in data:
+            customer_obj=Hesab_banki(data[id_search]['Name'],data[id_search]['lastname'],data[id_search]['id'],data[id_search]['bank_account'],data[id_search]['supply'])
+            customer_obj.withdraw(id_search)
             
  
     
